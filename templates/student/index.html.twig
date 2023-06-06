@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1>Liste des étudiants</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Matricule</th>
+					<th>Nom complet</th>
+					<th>Date de naissance</th>
+					<th>Lieu de naissance</th>
+					<th>Numéro de téléphone</th>
+					<th>Addresse</th>
+					{# <th>Email</th> #}
+					{# <th>Date de créations</th> #}
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for student in students %}
+					<tr>
+						<td>{{ student.id }}</td>
+						<td>{{ student.matricule }}</td>
+						<td>{{ student.fullname }}</td>
+						<td>{{ student.birthday ? student.birthday|date('Y-m-d') : '' }}</td>
+						<td>{{ student.birthplace }}</td>
+						<td>{{ student.phone }}</td>
+						<td>{{ student.adress }}</td>
+						{# <td>{{ student.email }}</td> #}
+						{# <td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td> #}
+						<td>
+							<a href="{{ path('app_student_show', {'id': student.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_student_edit', {'id': student.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="10">Aucun enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_student_new') }}" class="btn btn-primary">Ajouter un nouvel étudiant</a>
+	</div>
+
+{% endblock %}

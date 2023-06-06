@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\StudentRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -47,12 +48,13 @@ class Student
     private Collection $positions;
 
     #[ORM\Column]
-    private ?\DateTimeImmutable $created_at = null;
+    private ?DateTimeImmutable $created_at = null;
 
     public function __construct()
     {
         $this->courseOfLives = new ArrayCollection();
         $this->positions = new ArrayCollection();
+        $this->created_at = new DateTimeImmutable();
     }
 
     public function getId(): ?int

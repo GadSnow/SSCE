@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div class="row">
+	<div class="col">{{ form_row(form.matricule)}}</div>
+	<div class="col">{{ form_row(form.fullname)}}</div>
+	<div class="col">{{ form_row(form.birthday)}}</div>
+	<div class="col">{{ form_row(form.birthplace) }}</div>
+</div>
+<div class="row">
+	<div class="col">{{ form_row(form.email) }}</div>
+	<div class="col">{{ form_row(form.phone) }}</div>
+	<div class="col">{{ form_row(form.adress) }}</div>
+	<div class="col">{{ form_row(form.speciality) }}</div>
+</div>
+<button class="btn btn-primary mb-3">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

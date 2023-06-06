@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Student
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1>Student</h1>
+
+		<table class="table table-striped">
+			<tbody>
+				<tr>
+					<th>Id</th>
+					<td>{{ student.id }}</td>
+				</tr>
+				<tr>
+					<th>Matricule</th>
+					<td>{{ student.matricule }}</td>
+				</tr>
+				<tr>
+					<th>Nom et Prénom</th>
+					<td>{{ student.fullname }}</td>
+				</tr>
+				<tr>
+					<th>Date de naissance</th>
+					<td>{{ student.birthday ? student.birthday|date('Y-m-d') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Lieu de naissance</th>
+					<td>{{ student.birthplace }}</td>
+				</tr>
+				<tr>
+					<th>Numéro de téléphone</th>
+					<td>{{ student.phone }}</td>
+				</tr>
+				<tr>
+					<th>Addresse</th>
+					<td>{{ student.adress }}</td>
+				</tr>
+				<tr>
+					<th>Email</th>
+					<td>{{ student.email }}</td>
+				</tr>
+				<tr>
+					<th>Date de création</th>
+					<td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_student_index') }}" class="btn btn-secondary">Retour à la liste des étudiants</a>
+
+		<a href="{{ path('app_student_edit', {'id': student.id}) }}" class="btn btn-primary">Modifier</a>
+
+		{{ include('student/_delete_form.html.twig') }}
+	</div>
+
+{% endblock %}
