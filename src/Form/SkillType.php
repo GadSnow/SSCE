@@ -2,26 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\Speciality;
+use App\Entity\Skill;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class SpecialityType extends AbstractType
+class SkillType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('label')
-            ->add('description', TextareaType::class);
+            ->add('description');
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Speciality::class,
-            'translation_domain' => 'speciality'
+            'data_class' => Skill::class,
+            'translation_domain' => 'skill'
         ]);
     }
 }

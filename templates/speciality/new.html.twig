@@ -1,11 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Speciality{% endblock %}
+{% block title %}New Speciality
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Speciality</h1>
+	<div class="container mt-4">
+		<h1 class="fw-bold">Ajouter une nouvelle spécialité</h1>
 
-    {{ include('speciality/_form.html.twig') }}
+		{{ include('speciality/_form.html.twig', { button_label: 'Enregistrer'}) }}
 
-    <a href="{{ path('app_speciality_index') }}">back to list</a>
+		<a href="{{ path('app_speciality_index') }}" class="btn btn-secondary">Retour à la liste des spécalités</a>
+	</div>
 {% endblock %}

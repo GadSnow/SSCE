@@ -4,8 +4,8 @@
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<h1>Student</h1>
+	<div class="container mt-4">
+		<h1 class="fw-bold">Informations</h1>
 
 		<table class="table table-striped">
 			<tbody>
@@ -44,6 +44,10 @@
 				<tr>
 					<th>Date de création</th>
 					<td>{{ student.createdAt ? student.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+				</tr>
+				<tr>
+					<th>Specialité</th>
+					<td>{{ student.lastSpeciality }}</td>
 				</tr>
 			</tbody>
 		</table>

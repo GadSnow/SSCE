@@ -1,37 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Speciality index{% endblock %}
+{% block title %}Speciality index
+{% endblock %}
 
 {% block body %}
-    <h1>Speciality index</h1>
+	<div class="container mt-4">
+		<h1 class="fw-bold">Liste des spécialités</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Label</th>
-                <th>Description</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for speciality in specialities %}
-            <tr>
-                <td>{{ speciality.id }}</td>
-                <td>{{ speciality.label }}</td>
-                <td>{{ speciality.description }}</td>
-                <td>
-                    <a href="{{ path('app_speciality_show', {'id': speciality.id}) }}">show</a>
-                    <a href="{{ path('app_speciality_edit', {'id': speciality.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Libellé</th>
+					<th>Description</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for speciality in specialities %}
+					<tr>
+						<td>{{ speciality.id }}</td>
+						<td>{{ speciality.label }}</td>
+						<td>{{ speciality.description }}</td>
+						<td>
+							<a href="{{ path('app_speciality_show', {'id': speciality.id}) }}" class="btn btn-secondary">Voir</a>
+							<a href="{{ path('app_speciality_edit', {'id': speciality.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucun enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
 
-    <a href="{{ path('app_speciality_new') }}">Create new</a>
+		<a href="{{ path('app_speciality_new') }}" class="btn btn-primary">Ajouter une nouvelle spécialité</a>
+	</div>
+
 {% endblock %}

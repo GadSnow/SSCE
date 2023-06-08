@@ -31,7 +31,7 @@ final class Version20230605213519 extends AbstractMigration
         $this->addSql('ALTER TABLE position ADD CONSTRAINT FK_462CE4F5F773E7CA FOREIGN KEY (student_id_id) REFERENCES student (id)');
         $this->addSql('ALTER TABLE position ADD CONSTRAINT FK_462CE4F5DAC5BE2B FOREIGN KEY (entreprise_id_id) REFERENCES entreprise (id)');
         $this->addSql('ALTER TABLE position ADD CONSTRAINT FK_462CE4F53408E8AF FOREIGN KEY (situation_id) REFERENCES situation (id)');
-        $this->addSql('ALTER TABLE student ADD CONSTRAINT FK_B723AF333B5A08D7 FOREIGN KEY (speciality_id) REFERENCES speciality (id)');
+        $this->addSql('ALTER TABLE student ADD CONSTRAINT FK_B723AF333B5A08D7 FOREIGN KEY (speciality_id) REFERENCES speciality (id) ON DELETE SET NULL');
     }
 
     public function down(Schema $schema): void

@@ -69,7 +69,7 @@ class SpecialityController extends AbstractController
     #[Route('/{id}', name: 'app_speciality_delete', methods: ['POST'])]
     public function delete(Request $request, Speciality $speciality, SpecialityRepository $specialityRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$speciality->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $speciality->getId(), $request->request->get('_token'))) {
             $specialityRepository->remove($speciality, true);
         }
 

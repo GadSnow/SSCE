@@ -50,6 +50,11 @@ class Student
     #[ORM\Column]
     private ?DateTimeImmutable $created_at = null;
 
+    private ?string $lastSpeciality = null;
+
+    #[ORM\Column(length: 255)]
+    private ?string $filename = null;
+
     public function __construct()
     {
         $this->courseOfLives = new ArrayCollection();
@@ -218,14 +223,46 @@ class Student
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeImmutable
+    public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->created_at;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $created_at): self
+    public function setCreatedAt(DateTimeImmutable $created_at): self
     {
         $this->created_at = $created_at;
+
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getLastSpeciality(): ?string
+    {
+        $this->lastSpeciality = $this->speciality?->getLabel() == null ? $this->speciality?->getLabel()  : $this->lastSpeciality;
+
+        return $this->lastSpeciality;
+    }
+
+    /**
+     * @param  $lastSpeciality 
+     * @return self
+     */
+    public function setLastSpeciality(?string $lastSpeciality): self
+    {
+        $this->lastSpeciality = $lastSpeciality;
+        return $this;
+    }
+
+    public function getFilename(): ?string
+    {
+        return $this->filename;
+    }
+
+    public function setFilename(string $filename): self
+    {
+        $this->filename = $filename;
 
         return $this;
     }
