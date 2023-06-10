@@ -3,21 +3,29 @@
 namespace App\Controller;
 
 use App\Entity\Student;
+use App\Entity\StudentSearch;
 use App\Form\StudentType;
 use App\Repository\StudentRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Form\StudentSearchType;
 
 #[Route('/student')]
 class StudentController extends AbstractController
 {
     #[Route('/', name: 'app_student_index', methods: ['GET'])]
-    public function index(StudentRepository $studentRepository): Response
+    public function index(StudentRepository $studentRepository, Request $request): Response
     {
-        return $this->render('student/index.html.twig', [
-            'students' => $studentRepository->findAll(),
+        $search = new StudentSearch();
+        $form = $this->createForm(StudentSearchType::class, $search);
+
+        $form->handleRequest($request);
+
+        return $this->renderForm('student/index.html.twig', [
+            'students' => $studentRepository->findAllByMatricule($search),
+            'form' => $form
         ]);
     }
 
