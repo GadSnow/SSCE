@@ -6,6 +6,7 @@ use App\Entity\Speciality;
 use App\Entity\Student;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,6 +25,9 @@ class StudentType extends AbstractType
             ->add('speciality', EntityType::class, [
                 "class" => Speciality::class,
                 "choice_label" => "label"
+            ])
+            ->add('imageFile', FileType::class, [
+                'required' =>  false
             ]);
     }
 

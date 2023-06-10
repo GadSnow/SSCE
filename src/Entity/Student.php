@@ -8,8 +8,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: StudentRepository::class)]
+#[UniqueEntity('matricule', message: 'Cette valeur doit être unique.')]
+#[Vich\Uploadable]
 class Student
 {
     #[ORM\Id]
@@ -36,6 +43,7 @@ class Student
     private ?string $adress = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Assert\Email(message: 'Addresse email non valide.')]
     private ?string $email = null;
 
     #[ORM\ManyToOne(inversedBy: 'studentId')]
@@ -52,8 +60,16 @@ class Student
 
     private ?string $lastSpeciality = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     private ?string $filename = null;
+
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    #[Vich\UploadableField(mapping: 'student_image', fileNameProperty: 'filename')]
+    #[Assert\Image(mimeTypes: ['image/jpeg'])]
+    private ?File $imageFile = null;
 
     public function __construct()
     {
@@ -260,10 +276,50 @@ class Student
         return $this->filename;
     }
 
-    public function setFilename(string $filename): self
+    public function setFilename(?string $filename): self
     {
         $this->filename = $filename;
 
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param  $updatedAt 
+     * @return self
+     */
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param  $imageFile 
+     * @return self
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
         return $this;
     }
 }

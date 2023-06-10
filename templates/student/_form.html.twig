@@ -3,18 +3,16 @@
 	<div class="col">{{ form_row(form.matricule)}}</div>
 	<div class="col">{{ form_row(form.fullname)}}</div>
 	<div class="col">{{ form_row(form.birthday)}}</div>
-	<div class="col">{{ form_row(form.birthplace) }}</div>
 </div>
 <div class="row">
+	<div class="col">{{ form_row(form.birthplace) }}</div>
 	<div class="col">{{ form_row(form.email) }}</div>
 	<div class="col">{{ form_row(form.phone) }}</div>
+</div>
+<div class="row">
 	<div class="col">{{ form_row(form.adress) }}</div>
-	{% if form.speciality is defined%}
-		<div class="col">
-			{{ form_row(form.speciality) }}
-		</div>
-	{% endif %}
-
+	<div class="col">{{ form_row(form.speciality) }}</div>
+	<div class="col">{{ form_row(form.imageFile) }}</div>
 </div>
 <button class="btn btn-primary mb-2">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
