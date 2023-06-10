@@ -7,27 +7,23 @@
 	<div class="container mt-4">
 		<div class="row">
 			<div class="col d-flex align-items-center flex-column">
-				<h1>{{ student.fullname }}</h1>
 				{% if student.fileName %}
 					<img src="{{ vich_uploader_asset(student, 'imageFile') }}" alt="student_image" class="card-img-top " style="width: 250px; height: 250px; border-radius: 50%;">
 				{% else %}
 					<img src="/images/e3.jpg" alt="student_image" class="card-img-top" style="width: 250px; height: 250px; border-radius: 50%;">
 				{% endif %}
 			</div>
+			<h1 class="fw-bold">{{ student.fullname }}</h1>
 		</div>
 
 		<table class="table table-striped">
 			<tbody>
 				<tr>
-					<th>Id</th>
-					<td>{{ student.id }}</td>
-				</tr>
-				<tr>
 					<th>Matricule</th>
 					<td>{{ student.matricule }}</td>
 				</tr>
 				<tr>
-					<th>Nom et Prénom</th>
+					<th>Prénom et Nom</th>
 					<td>{{ student.fullname }}</td>
 				</tr>
 				<tr>
@@ -58,8 +54,22 @@
 					<th>Specialité</th>
 					<td>{{ student.lastSpeciality }}</td>
 				</tr>
+
 			</tbody>
 		</table>
+		{% if student.skill is not empty %}
+			<div class="row mb-4">
+				<div class="col-md-4">
+					<h3>Compétences</h3>
+					<div class="list-group">
+						{% for skill in student.skill %}
+							<li class="list-group-item">{{skill.label}}</li>
+						{% endfor %}
+					</div>
+				</div>
+
+			</div>
+		{% endif %}
 
 		<a href="{{ path('app_student_index') }}" class="btn btn-secondary">Retour à la liste des étudiants</a>
 

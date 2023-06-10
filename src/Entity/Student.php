@@ -71,11 +71,15 @@ class Student
     #[Assert\Image(mimeTypes: ['image/jpeg'])]
     private ?File $imageFile = null;
 
+    #[ORM\ManyToMany(targetEntity: Skill::class, inversedBy: 'students')]
+    private Collection $skill;
+
     public function __construct()
     {
         $this->courseOfLives = new ArrayCollection();
         $this->positions = new ArrayCollection();
         $this->created_at = new DateTimeImmutable();
+        $this->skill = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -320,6 +324,30 @@ class Student
         if ($this->imageFile instanceof UploadedFile) {
             $this->updatedAt = new DateTimeImmutable();
         }
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Skill>
+     */
+    public function getSkill(): Collection
+    {
+        return $this->skill;
+    }
+
+    public function addSkill(Skill $skill): self
+    {
+        if (!$this->skill->contains($skill)) {
+            $this->skill->add($skill);
+        }
+
+        return $this;
+    }
+
+    public function removeSkill(Skill $skill): self
+    {
+        $this->skill->removeElement($skill);
+
         return $this;
     }
 }
