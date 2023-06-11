@@ -59,9 +59,16 @@
 					</td>
 				</tr>
 			{% else %}
-				<tr>
-					<td colspan="10">Aucun enregistrement</td>
-				</tr>
+				{% if matricule is not empty  %}
+					<tr>
+						<td colspan="10">Aucun résultat</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="10">Aucun enregistrement</td>
+					</tr>
+				{% endif %}
+
 			{% endfor %}
 		</tbody>
 	</table>

@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/skill')]
+#[Route('/ssceadmin/skill')]
 class SkillController extends AbstractController
 {
     #[Route('/', name: 'app_skill_index', methods: ['GET'])]
@@ -69,7 +69,7 @@ class SkillController extends AbstractController
     #[Route('/{id}', name: 'app_skill_delete', methods: ['POST'])]
     public function delete(Request $request, Skill $skill, SkillRepository $skillRepository): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$skill->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $skill->getId(), $request->request->get('_token'))) {
             $skillRepository->remove($skill, true);
         }
 

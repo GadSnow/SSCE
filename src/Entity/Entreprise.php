@@ -6,6 +6,7 @@ namespace App\Entity;
 use App\Repository\EntrepriseRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
@@ -49,21 +50,21 @@ class Entreprise
      */
     private ?string $email = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     /**
      * Summary of latitude
      * @var string
      */
     private ?string $latitude = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, nullable: true)]
     /**
      * Summary of longitude
      * @var string
      */
     private ?string $longitude = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, type: Types::TEXT)]
     /**
      * Summary of description
      * @var string
@@ -76,6 +77,9 @@ class Entreprise
      * @var Collection
      */
     private Collection $positions;
+
+    #[ORM\Column]
+    private ?bool $partener = null;
 
     /**
      * Summary of __construct
@@ -277,6 +281,18 @@ class Entreprise
                 $position->setEntrepriseId(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isPartener(): ?bool
+    {
+        return $this->partener;
+    }
+
+    public function setPartener(bool $partener): self
+    {
+        $this->partener = $partener;
 
         return $this;
     }

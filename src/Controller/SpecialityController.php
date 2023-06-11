@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/speciality')]
+#[Route('/ssceadmin/speciality')]
 class SpecialityController extends AbstractController
 {
     #[Route('/', name: 'app_speciality_index', methods: ['GET'])]

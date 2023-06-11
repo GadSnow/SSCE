@@ -52,7 +52,7 @@
 				</tr>
 				<tr>
 					<th>Specialité</th>
-					<td>{{ student.lastSpeciality }}</td>
+					<td>{{ student.speciality is null ? '' : student.speciality.label }}</td>
 				</tr>
 
 			</tbody>

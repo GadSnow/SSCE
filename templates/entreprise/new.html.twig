@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Entreprise
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+
+		<h1 class="fw-bold">Ajouter une entreprise</h1>
+
+		{{ include('entreprise/_form.html.twig', {button_label: 'Enregistrer'}) }}
+
+		<a href="{{ path('app_entreprise_index') }}" class="btn btn-secondary">Retour à la liste des entreprises</a>
+	</div>
+{% endblock %}

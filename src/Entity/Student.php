@@ -260,8 +260,7 @@ class Student
      */
     public function getLastSpeciality(): ?string
     {
-        $this->lastSpeciality = $this->speciality?->getLabel() == null ? $this->speciality?->getLabel()  : $this->lastSpeciality;
-
+        $this->lastSpeciality = $this->getSpeciality()->getLabel();
         return $this->lastSpeciality;
     }
 

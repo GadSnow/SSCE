@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Speciality;
 use App\Entity\Student;
 use App\Entity\StudentSearch;
 use App\Form\StudentType;
@@ -12,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\StudentSearchType;
 
-#[Route('/student')]
+#[Route('/ssceadmin/student')]
 class StudentController extends AbstractController
 {
     #[Route('/', name: 'app_student_index', methods: ['GET'])]
@@ -25,7 +26,8 @@ class StudentController extends AbstractController
 
         return $this->renderForm('student/index.html.twig', [
             'students' => $studentRepository->findAllByMatricule($search),
-            'form' => $form
+            'form' => $form,
+            'matricule' => $request->query->get('matricule')
         ]);
     }
 

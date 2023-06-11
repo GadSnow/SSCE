@@ -18,6 +18,37 @@
 
 	</head>
 	<body>
+		<nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="{{ path('app_student_index')}}">Système de suivi de carrière d'étudiante</a>
+				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					{% if app.user %}
+						<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_student_index') }}">Etudiant</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_speciality_index') }}">Spécialités</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_skill_index') }}">Compétences</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="{{ path('app_entreprise_index') }}">Entreprises</a>
+							</li>
+						</ul>
+					</div>
+					<ul class="navbar-nav me-auto mb-2 mb-lg-0">
+						<li class="nav-item text-end">
+							<a href="{{ path('app_logout') }}" class="nav-link">Se déconnecter</a>
+						</li>
+					</ul>
+				{% endif %}
+			</div>
+		</nav>
 		{% block body %}{% endblock %}
 
 
