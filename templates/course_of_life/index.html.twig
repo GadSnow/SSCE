@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}CourseOfLife index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1 class="fw-bold">Liste des CV</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Nom et prénom</th>
+					<th>Matricule</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for course_of_life in course_of_lives %}
+					<tr>
+						<td>{{ course_of_life.id }}</td>
+						<td>{{ course_of_life.fullname}}</td>
+						<td>{{ course_of_life.matricule }}</td>
+						<td>
+							{% if course_of_life.file %}
+								<a href="{{ vich_uploader_asset(course_of_life, 'imageFile', 'App\\Entity\\CourseOfLife') }}" class="btn btn-secondary" target="_blank">
+									voir
+								</a>
+							{% endif %}
+
+							<a href="{{ path('app_course_of_life_edit', {'id': course_of_life.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="3">Aucun enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_course_of_life_new') }}" class="btn btn-primary">Ajouter un nouveau CV</a>
+	</div>
+
+{% endblock %}

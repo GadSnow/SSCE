@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New CourseOfLife
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1 class="fw-bold">Ajout d'un CV</h1>
+
+		{{ include('course_of_life/_form.html.twig', {button_label: 'Enregistrer'}) }}
+
+		<a href="{{ path('app_course_of_life_index') }}" class="btn btn-secondary">Retour à la liste des CV</a>
+	</div>
+
+{% endblock %}

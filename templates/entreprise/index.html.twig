@@ -15,7 +15,6 @@
 					<th>Adresse</th>
 					<th>Contact</th>
 					<th>Email</th>
-					<th>Description</th>
 					<th>Partenaire</th>
 					<th>actions</th>
 				</tr>
@@ -28,7 +27,6 @@
 						<td>{{ entreprise.adress }}</td>
 						<td>{{ entreprise.contact }}</td>
 						<td>{{ entreprise.email }}</td>
-						<td>{{ entreprise.description }}</td>
 						<td>{{ entreprise.partener ? 'Oui' : 'Non' }}</td>
 						<td>
 							<a href="{{ path('app_entreprise_show', {'id': entreprise.id}) }}" class="btn btn-secondary">Voir</a>
