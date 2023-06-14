@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Entreprise;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -19,8 +20,12 @@ class EntrepriseType extends AbstractType
             ->add('latitude')
             ->add('longitude')
             ->add('description')
-            ->add('partener');
+            ->add('partener')
+            ->add('imageFile', FileType::class, [
+                'required' => false
+            ]);
     }
+
 
     public function configureOptions(OptionsResolver $resolver): void
     {

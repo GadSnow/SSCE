@@ -4,13 +4,18 @@
 namespace App\Entity;
 
 use App\Repository\EntrepriseRepository;
+use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 #[ORM\Entity(repositoryClass: EntrepriseRepository::class)]
-
+#[Vich\Uploadable]
 class Entreprise
 {
     #[ORM\Id]
@@ -80,6 +85,15 @@ class Entreprise
 
     #[ORM\Column]
     private ?bool $partener = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $logo = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?DateTimeImmutable $updatedAt = null;
+
+    #[Vich\UploadableField(mapping: 'entreprise_image', fileNameProperty: 'logo')]
+    private ?File $imageFile = null;
 
     /**
      * Summary of __construct
@@ -294,6 +308,58 @@ class Entreprise
     {
         $this->partener = $partener;
 
+        return $this;
+    }
+
+    public function getLogo(): ?string
+    {
+        return $this->logo;
+    }
+
+    public function setLogo(?string $logo): self
+    {
+        $this->logo = $logo;
+
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getUpdatedAt(): ?DateTimeImmutable
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param  $updatedAt 
+     * @return self
+     */
+    public function setUpdatedAt(?DateTimeImmutable $updatedAt): self
+    {
+        $this->updatedAt = $updatedAt;
+        return $this;
+    }
+
+    /**
+     * @return 
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param  $imageFile 
+     * @return self
+     */
+    public function setImageFile(?File $imageFile): self
+    {
+        $this->imageFile = $imageFile;
+
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->updatedAt = new DateTimeImmutable();
+        }
         return $this;
     }
 }
