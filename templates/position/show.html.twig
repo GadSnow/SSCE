@@ -22,8 +22,8 @@
 					<td>{{ position.situation }}</td>
 				</tr>
 				<tr>
-					<th>Situation</th>
-					<td>{{ position.situation }}</td>
+					<th>Date</th>
+					<td>{{ position.createdAt ? position.createdAt|date('Y-m-d') : '' }}</td>
 				</tr>
 
 			</tbody>

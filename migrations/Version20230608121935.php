@@ -22,7 +22,7 @@ final class Version20230608121935 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->addSql('ALTER TABLE student DROP FOREIGN KEY FK_B723AF333B5A08D7');
         $this->addSql('ALTER TABLE student ADD filename VARCHAR(255)');
-        $this->addSql('ALTER TABLE student ADD CONSTRAINT FK_B723AF333B5A08D7 FOREIGN KEY (speciality_id) REFERENCES speciality (id) ON DELETE SET NULL');
+        $this->addSql('ALTER TABLE student ADD CONSTRAINT FK_B723AF333B5A08D7 FOREIGN KEY (speciality_id) REFERENCES speciality (id) ON DELETE SET NULL ON UPDATE CASCADE');
     }
 
     public function down(Schema $schema): void
