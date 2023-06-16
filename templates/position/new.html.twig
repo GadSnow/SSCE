@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Position
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+
+		<h1 class="fw-bold">Ajout d'une position</h1>
+
+		{{ include('position/_form.html.twig', {button_label: 'Enregistrer'}) }}
+
+		<a href="{{ path('app_position_index') }}" class="btn btn-secondary mt-2">Retour à la liste des positions</a>
+	</div>
+{% endblock %}

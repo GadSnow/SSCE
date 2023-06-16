@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Position index
+{% endblock %}
+
+{% block body %}
+	<div class="container mt-4">
+		<h1 class="fw-bold">Liste des positions</h1>
+
+		<table class="table table-striped">
+			<thead>
+				<tr>
+					<th>Id</th>
+					<th>Libellé</th>
+					<th>Situation</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for position in positions %}
+					<tr>
+						<td>{{ position.id }}</td>
+						<td>{{ position.label }}</td>
+						<td>{{ position.situation }}</td>
+						<td>
+							<a href="{{ path('app_position_show', {'id': position.id}) }}" class="btn btn-seconday">Voir</a>
+							<a href="{{ path('app_position_edit', {'id': position.id}) }}" class="btn btn-primary">Modifier</a>
+						</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td colspan="4">Aucun enregistrement</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+
+		<a href="{{ path('app_position_new') }}" class="btn btn-primary">Ajouter une nouvelle position</a>
+	</div>
+
+{% endblock %}

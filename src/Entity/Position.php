@@ -22,8 +22,8 @@ class Position
     #[ORM\ManyToOne(inversedBy: 'positions')]
     private ?Entreprise $entrepriseId = null;
 
-    #[ORM\ManyToOne(inversedBy: 'positions')]
-    private ?Situation $situation = null;
+    #[ORM\Column(length: 255)]
+    private ?string $situation = null;
 
     public function getId(): ?int
     {
@@ -66,12 +66,12 @@ class Position
         return $this;
     }
 
-    public function getSituation(): ?Situation
+    public function getSituation(): ?string
     {
         return $this->situation;
     }
 
-    public function setSituation(?Situation $situation): self
+    public function setSituation(string $situation): self
     {
         $this->situation = $situation;
 
