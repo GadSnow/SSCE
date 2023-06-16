@@ -1,13 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Position{% endblock %}
+{% block title %}Edit Position
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Position</h1>
+	<div class="container mt-4">
+		<h1 class="fw-bold">Modification de la position:
+			{{ position.label }}</h1>
 
-    {{ include('position/_form.html.twig', {'button_label': 'Update'}) }}
+		{{ include('position/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_position_index') }}">back to list</a>
+		<a href="{{ path('app_position_index') }}" class="btn btn-secondary mt-2">Retour à la liste des positions</a>
 
-    {{ include('position/_delete_form.html.twig') }}
+		{{ include('position/_delete_form.html.twig') }}
+	</div>
+
 {% endblock %}

@@ -19,7 +19,7 @@ class PositionType extends AbstractType
             ->add('situation')
             ->add('studentId', EntityType::class, [
                 'class' => Student::class,
-                'choice_label' => 'fullname'
+                'choice_label' => 'matricule'
             ])
             ->add('entrepriseId', EntityType::class, [
                 'class' => Entreprise::class,

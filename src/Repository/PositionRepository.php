@@ -39,28 +39,44 @@ class PositionRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Position[] Returns an array of Position objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('p.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function savePosition(Position $entity)
+    {
+        $conn = $this->getEntityManager()->getConnection();
 
-//    public function findOneBySomeField($value): ?Position
-//    {
-//        return $this->createQueryBuilder('p')
-//            ->andWhere('p.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        $sql = '
+                INSERT INTO Position (student_id_id, entreprise_id_id, label, situation)
+                VALUES (:student_id, :entreprise_id, :label, :situation)
+        ';
+        $stmt = $conn->prepare($sql);
+        $stmt->executeQuery([
+            'student_id' => $entity->getStudentId(),
+            'entreprise_id' => $entity->getEntrepriseId(),
+            'label' => $entity->getLabel()
+        ]);
+    }
+
+    //    /**
+    //     * @return Position[] Returns an array of Position objects
+    //     */
+    //    public function findByExampleField($value): array
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->orderBy('p.id', 'ASC')
+    //            ->setMaxResults(10)
+    //            ->getQuery()
+    //            ->getResult()
+    //        ;
+    //    }
+
+    //    public function findOneBySomeField($value): ?Position
+    //    {
+    //        return $this->createQueryBuilder('p')
+    //            ->andWhere('p.exampleField = :val')
+    //            ->setParameter('val', $value)
+    //            ->getQuery()
+    //            ->getOneOrNullResult()
+    //        ;
+    //    }
 }
